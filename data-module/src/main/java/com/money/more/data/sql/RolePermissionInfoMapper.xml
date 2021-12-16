@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.money.more.data.mapper.RolePermissionInfoMapper">
+  <resultMap id="BaseResultMap" type="com.money.more.data.entity.RolePermissionInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="disable" jdbcType="TINYINT" property="disable" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="permission_id" jdbcType="VARCHAR" property="permissionId" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="expand_1" jdbcType="VARCHAR" property="expand1" />
+    <result column="expand_2" jdbcType="VARCHAR" property="expand2" />
+    <result column="expand_3" jdbcType="VARCHAR" property="expand3" />
+    <result column="expand_4" jdbcType="VARCHAR" property="expand4" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `disable`, role_id, permission_id, create_by, create_time, last_update_by, last_update_time,
+    expand_1, expand_2, expand_3, expand_4
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from role_permission_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from role_permission_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.money.more.data.entity.RolePermissionInfo">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into role_permission_info (id, `disable`, role_id,
+    permission_id, create_by, create_time,
+    last_update_by, last_update_time, expand_1,
+    expand_2, expand_3, expand_4
+    )
+    values (#{id,jdbcType=BIGINT}, #{disable,jdbcType=TINYINT}, #{roleId,jdbcType=VARCHAR},
+    #{permissionId,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+    #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{expand1,jdbcType=VARCHAR},
+    #{expand2,jdbcType=VARCHAR}, #{expand3,jdbcType=VARCHAR}, #{expand4,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.money.more.data.entity.RolePermissionInfo">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into role_permission_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="disable != null">
+        `disable`,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="permissionId != null">
+        permission_id,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
+      <if test="expand1 != null">
+        expand_1,
+      </if>
+      <if test="expand2 != null">
+        expand_2,
+      </if>
+      <if test="expand3 != null">
+        expand_3,
+      </if>
+      <if test="expand4 != null">
+        expand_4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="disable != null">
+        #{disable,jdbcType=TINYINT},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expand1 != null">
+        #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="expand4 != null">
+        #{expand4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.money.more.data.entity.RolePermissionInfo">
+    update role_permission_info
+    <set>
+      <if test="disable != null">
+        `disable` = #{disable,jdbcType=TINYINT},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionId != null">
+        permission_id = #{permissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expand1 != null">
+        expand_1 = #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        expand_2 = #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        expand_3 = #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="expand4 != null">
+        expand_4 = #{expand4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.money.more.data.entity.RolePermissionInfo">
+    update role_permission_info
+    set `disable` = #{disable,jdbcType=TINYINT},
+      role_id = #{roleId,jdbcType=VARCHAR},
+      permission_id = #{permissionId,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      expand_1 = #{expand1,jdbcType=VARCHAR},
+      expand_2 = #{expand2,jdbcType=VARCHAR},
+      expand_3 = #{expand3,jdbcType=VARCHAR},
+      expand_4 = #{expand4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

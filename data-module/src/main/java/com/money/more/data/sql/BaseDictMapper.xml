@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.money.more.data.mapper.BaseDictMapper">
+  <resultMap id="BaseResultMap" type="com.money.more.data.entity.BaseDict">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="disable" jdbcType="TINYINT" property="disable" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="dict_code" jdbcType="VARCHAR" property="dictCode" />
+    <result column="dict_value" jdbcType="VARCHAR" property="dictValue" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+    <result column="price_unit" jdbcType="DECIMAL" property="priceUnit" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="expand_1" jdbcType="VARCHAR" property="expand1" />
+    <result column="expand_2" jdbcType="VARCHAR" property="expand2" />
+    <result column="expand_3" jdbcType="VARCHAR" property="expand3" />
+    <result column="expand_4" jdbcType="VARCHAR" property="expand4" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `disable`, `label`, dict_code, dict_value, parent_code, price_unit, `status`,
+    remark, sort, create_by, create_time, last_update_by, last_update_time, expand_1,
+    expand_2, expand_3, expand_4
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from base_dict
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from base_dict
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.money.more.data.entity.BaseDict">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into base_dict (id, `disable`, `label`,
+    dict_code, dict_value, parent_code,
+    price_unit, `status`, remark,
+    sort, create_by, create_time,
+    last_update_by, last_update_time, expand_1,
+    expand_2, expand_3, expand_4
+    )
+    values (#{id,jdbcType=BIGINT}, #{disable,jdbcType=TINYINT}, #{label,jdbcType=VARCHAR},
+    #{dictCode,jdbcType=VARCHAR}, #{dictValue,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR},
+    #{priceUnit,jdbcType=DECIMAL}, #{status,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR},
+    #{sort,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+    #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{expand1,jdbcType=VARCHAR},
+    #{expand2,jdbcType=VARCHAR}, #{expand3,jdbcType=VARCHAR}, #{expand4,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.money.more.data.entity.BaseDict">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into base_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="disable != null">
+        `disable`,
+      </if>
+      <if test="label != null">
+        `label`,
+      </if>
+      <if test="dictCode != null">
+        dict_code,
+      </if>
+      <if test="dictValue != null">
+        dict_value,
+      </if>
+      <if test="parentCode != null">
+        parent_code,
+      </if>
+      <if test="priceUnit != null">
+        price_unit,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
+      <if test="expand1 != null">
+        expand_1,
+      </if>
+      <if test="expand2 != null">
+        expand_2,
+      </if>
+      <if test="expand3 != null">
+        expand_3,
+      </if>
+      <if test="expand4 != null">
+        expand_4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="disable != null">
+        #{disable,jdbcType=TINYINT},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null">
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue != null">
+        #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="priceUnit != null">
+        #{priceUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expand1 != null">
+        #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="expand4 != null">
+        #{expand4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.money.more.data.entity.BaseDict">
+    update base_dict
+    <set>
+      <if test="disable != null">
+        `disable` = #{disable,jdbcType=TINYINT},
+      </if>
+      <if test="label != null">
+        `label` = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null">
+        dict_code = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue != null">
+        dict_value = #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="priceUnit != null">
+        price_unit = #{priceUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expand1 != null">
+        expand_1 = #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        expand_2 = #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        expand_3 = #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="expand4 != null">
+        expand_4 = #{expand4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.money.more.data.entity.BaseDict">
+    update base_dict
+    set `disable` = #{disable,jdbcType=TINYINT},
+      `label` = #{label,jdbcType=VARCHAR},
+      dict_code = #{dictCode,jdbcType=VARCHAR},
+      dict_value = #{dictValue,jdbcType=VARCHAR},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      price_unit = #{priceUnit,jdbcType=DECIMAL},
+      `status` = #{status,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      expand_1 = #{expand1,jdbcType=VARCHAR},
+      expand_2 = #{expand2,jdbcType=VARCHAR},
+      expand_3 = #{expand3,jdbcType=VARCHAR},
+      expand_4 = #{expand4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

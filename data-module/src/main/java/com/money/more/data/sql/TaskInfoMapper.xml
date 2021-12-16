@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.money.more.data.mapper.TaskInfoMapper">
+  <resultMap id="BaseResultMap" type="com.money.more.data.entity.TaskInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="disable" jdbcType="TINYINT" property="disable" />
+    <result column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="merchant_id" jdbcType="VARCHAR" property="merchantId" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="platform_type" jdbcType="INTEGER" property="platformType" />
+    <result column="platform_name" jdbcType="VARCHAR" property="platformName" />
+    <result column="business_type" jdbcType="INTEGER" property="businessType" />
+    <result column="business_name" jdbcType="VARCHAR" property="businessName" />
+    <result column="task_url" jdbcType="VARCHAR" property="taskUrl" />
+    <result column="task_count" jdbcType="INTEGER" property="taskCount" />
+    <result column="payment_amount" jdbcType="DECIMAL" property="paymentAmount" />
+    <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+    <result column="customer_price" jdbcType="DECIMAL" property="customerPrice" />
+    <result column="task_status" jdbcType="VARCHAR" property="taskStatus" />
+    <result column="audit_by" jdbcType="VARCHAR" property="auditBy" />
+    <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime" />
+    <result column="audit_result" jdbcType="VARCHAR" property="auditResult" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="expand_1" jdbcType="VARCHAR" property="expand1" />
+    <result column="expand_2" jdbcType="VARCHAR" property="expand2" />
+    <result column="expand_3" jdbcType="VARCHAR" property="expand3" />
+    <result column="expand_4" jdbcType="VARCHAR" property="expand4" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `disable`, task_id, merchant_id, task_name, platform_type, platform_name, business_type,
+    business_name, task_url, task_count, payment_amount, unit_price, customer_price,
+    task_status, audit_by, audit_time, audit_result, sort, remarks, create_time, create_by,
+    last_update_by, last_update_time, expand_1, expand_2, expand_3, expand_4
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from task_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.money.more.data.entity.TaskInfo">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into task_info (id, `disable`, task_id,
+    merchant_id, task_name, platform_type,
+    platform_name, business_type, business_name,
+    task_url, task_count, payment_amount,
+    unit_price, customer_price, task_status,
+    audit_by, audit_time, audit_result,
+    sort, remarks, create_time,
+    create_by, last_update_by, last_update_time,
+    expand_1, expand_2, expand_3,
+    expand_4)
+    values (#{id,jdbcType=BIGINT}, #{disable,jdbcType=TINYINT}, #{taskId,jdbcType=VARCHAR},
+    #{merchantId,jdbcType=VARCHAR}, #{taskName,jdbcType=VARCHAR}, #{platformType,jdbcType=INTEGER},
+    #{platformName,jdbcType=VARCHAR}, #{businessType,jdbcType=INTEGER}, #{businessName,jdbcType=VARCHAR},
+    #{taskUrl,jdbcType=VARCHAR}, #{taskCount,jdbcType=INTEGER}, #{paymentAmount,jdbcType=DECIMAL},
+    #{unitPrice,jdbcType=DECIMAL}, #{customerPrice,jdbcType=DECIMAL}, #{taskStatus,jdbcType=VARCHAR},
+    #{auditBy,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, #{auditResult,jdbcType=VARCHAR},
+    #{sort,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+    #{createBy,jdbcType=VARCHAR}, #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP},
+    #{expand1,jdbcType=VARCHAR}, #{expand2,jdbcType=VARCHAR}, #{expand3,jdbcType=VARCHAR},
+    #{expand4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.money.more.data.entity.TaskInfo">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into task_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="disable != null">
+        `disable`,
+      </if>
+      <if test="taskId != null">
+        task_id,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="taskName != null">
+        task_name,
+      </if>
+      <if test="platformType != null">
+        platform_type,
+      </if>
+      <if test="platformName != null">
+        platform_name,
+      </if>
+      <if test="businessType != null">
+        business_type,
+      </if>
+      <if test="businessName != null">
+        business_name,
+      </if>
+      <if test="taskUrl != null">
+        task_url,
+      </if>
+      <if test="taskCount != null">
+        task_count,
+      </if>
+      <if test="paymentAmount != null">
+        payment_amount,
+      </if>
+      <if test="unitPrice != null">
+        unit_price,
+      </if>
+      <if test="customerPrice != null">
+        customer_price,
+      </if>
+      <if test="taskStatus != null">
+        task_status,
+      </if>
+      <if test="auditBy != null">
+        audit_by,
+      </if>
+      <if test="auditTime != null">
+        audit_time,
+      </if>
+      <if test="auditResult != null">
+        audit_result,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
+      <if test="expand1 != null">
+        expand_1,
+      </if>
+      <if test="expand2 != null">
+        expand_2,
+      </if>
+      <if test="expand3 != null">
+        expand_3,
+      </if>
+      <if test="expand4 != null">
+        expand_4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="disable != null">
+        #{disable,jdbcType=TINYINT},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="platformType != null">
+        #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="platformName != null">
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        #{businessType,jdbcType=INTEGER},
+      </if>
+      <if test="businessName != null">
+        #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskUrl != null">
+        #{taskUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="taskCount != null">
+        #{taskCount,jdbcType=INTEGER},
+      </if>
+      <if test="paymentAmount != null">
+        #{paymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="unitPrice != null">
+        #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="customerPrice != null">
+        #{customerPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="taskStatus != null">
+        #{taskStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="auditBy != null">
+        #{auditBy,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null">
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditResult != null">
+        #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expand1 != null">
+        #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="expand4 != null">
+        #{expand4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.money.more.data.entity.TaskInfo">
+    update task_info
+    <set>
+      <if test="disable != null">
+        `disable` = #{disable,jdbcType=TINYINT},
+      </if>
+      <if test="taskId != null">
+        task_id = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null">
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="platformType != null">
+        platform_type = #{platformType,jdbcType=INTEGER},
+      </if>
+      <if test="platformName != null">
+        platform_name = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null">
+        business_type = #{businessType,jdbcType=INTEGER},
+      </if>
+      <if test="businessName != null">
+        business_name = #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskUrl != null">
+        task_url = #{taskUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="taskCount != null">
+        task_count = #{taskCount,jdbcType=INTEGER},
+      </if>
+      <if test="paymentAmount != null">
+        payment_amount = #{paymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="unitPrice != null">
+        unit_price = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="customerPrice != null">
+        customer_price = #{customerPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="taskStatus != null">
+        task_status = #{taskStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="auditBy != null">
+        audit_by = #{auditBy,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null">
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditResult != null">
+        audit_result = #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expand1 != null">
+        expand_1 = #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        expand_2 = #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        expand_3 = #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="expand4 != null">
+        expand_4 = #{expand4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.money.more.data.entity.TaskInfo">
+    update task_info
+    set `disable` = #{disable,jdbcType=TINYINT},
+      task_id = #{taskId,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=VARCHAR},
+      task_name = #{taskName,jdbcType=VARCHAR},
+      platform_type = #{platformType,jdbcType=INTEGER},
+      platform_name = #{platformName,jdbcType=VARCHAR},
+      business_type = #{businessType,jdbcType=INTEGER},
+      business_name = #{businessName,jdbcType=VARCHAR},
+      task_url = #{taskUrl,jdbcType=VARCHAR},
+      task_count = #{taskCount,jdbcType=INTEGER},
+      payment_amount = #{paymentAmount,jdbcType=DECIMAL},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
+      customer_price = #{customerPrice,jdbcType=DECIMAL},
+      task_status = #{taskStatus,jdbcType=VARCHAR},
+      audit_by = #{auditBy,jdbcType=VARCHAR},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      audit_result = #{auditResult,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      expand_1 = #{expand1,jdbcType=VARCHAR},
+      expand_2 = #{expand2,jdbcType=VARCHAR},
+      expand_3 = #{expand3,jdbcType=VARCHAR},
+      expand_4 = #{expand4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

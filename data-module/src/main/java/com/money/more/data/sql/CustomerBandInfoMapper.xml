@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.money.more.data.mapper.CustomerBandInfoMapper">
+  <resultMap id="BaseResultMap" type="com.money.more.data.entity.CustomerBandInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="disable" jdbcType="TINYINT" property="disable" />
+    <result column="bind_id" jdbcType="VARCHAR" property="bindId" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="bind_platform_type" jdbcType="INTEGER" property="bindPlatformType" />
+    <result column="bind_account" jdbcType="VARCHAR" property="bindAccount" />
+    <result column="bind_name" jdbcType="VARCHAR" property="bindName" />
+    <result column="bind_portrait" jdbcType="VARCHAR" property="bindPortrait" />
+    <result column="bind_count" jdbcType="VARCHAR" property="bindCount" />
+    <result column="bind_fans_count" jdbcType="VARCHAR" property="bindFansCount" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="expand_1" jdbcType="VARCHAR" property="expand1" />
+    <result column="expand_2" jdbcType="VARCHAR" property="expand2" />
+    <result column="expand_3" jdbcType="VARCHAR" property="expand3" />
+    <result column="expand_4" jdbcType="VARCHAR" property="expand4" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `disable`, bind_id, customer_id, bind_platform_type, bind_account, bind_name, 
+    bind_portrait, bind_count, bind_fans_count, create_by, create_time, last_update_by, 
+    last_update_time, expand_1, expand_2, expand_3, expand_4
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer_band_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from customer_band_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.money.more.data.entity.CustomerBandInfo">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into customer_band_info (id, `disable`, bind_id, 
+      customer_id, bind_platform_type, bind_account, 
+      bind_name, bind_portrait, bind_count, 
+      bind_fans_count, create_by, create_time, 
+      last_update_by, last_update_time, expand_1, 
+      expand_2, expand_3, expand_4
+      )
+    values (#{id,jdbcType=BIGINT}, #{disable,jdbcType=TINYINT}, #{bindId,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=VARCHAR}, #{bindPlatformType,jdbcType=INTEGER}, #{bindAccount,jdbcType=VARCHAR}, 
+      #{bindName,jdbcType=VARCHAR}, #{bindPortrait,jdbcType=VARCHAR}, #{bindCount,jdbcType=VARCHAR}, 
+      #{bindFansCount,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{expand1,jdbcType=VARCHAR}, 
+      #{expand2,jdbcType=VARCHAR}, #{expand3,jdbcType=VARCHAR}, #{expand4,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.money.more.data.entity.CustomerBandInfo">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into customer_band_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="disable != null">
+        `disable`,
+      </if>
+      <if test="bindId != null">
+        bind_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="bindPlatformType != null">
+        bind_platform_type,
+      </if>
+      <if test="bindAccount != null">
+        bind_account,
+      </if>
+      <if test="bindName != null">
+        bind_name,
+      </if>
+      <if test="bindPortrait != null">
+        bind_portrait,
+      </if>
+      <if test="bindCount != null">
+        bind_count,
+      </if>
+      <if test="bindFansCount != null">
+        bind_fans_count,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
+      <if test="expand1 != null">
+        expand_1,
+      </if>
+      <if test="expand2 != null">
+        expand_2,
+      </if>
+      <if test="expand3 != null">
+        expand_3,
+      </if>
+      <if test="expand4 != null">
+        expand_4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="disable != null">
+        #{disable,jdbcType=TINYINT},
+      </if>
+      <if test="bindId != null">
+        #{bindId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="bindPlatformType != null">
+        #{bindPlatformType,jdbcType=INTEGER},
+      </if>
+      <if test="bindAccount != null">
+        #{bindAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bindName != null">
+        #{bindName,jdbcType=VARCHAR},
+      </if>
+      <if test="bindPortrait != null">
+        #{bindPortrait,jdbcType=VARCHAR},
+      </if>
+      <if test="bindCount != null">
+        #{bindCount,jdbcType=VARCHAR},
+      </if>
+      <if test="bindFansCount != null">
+        #{bindFansCount,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expand1 != null">
+        #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="expand4 != null">
+        #{expand4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.money.more.data.entity.CustomerBandInfo">
+    update customer_band_info
+    <set>
+      <if test="disable != null">
+        `disable` = #{disable,jdbcType=TINYINT},
+      </if>
+      <if test="bindId != null">
+        bind_id = #{bindId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="bindPlatformType != null">
+        bind_platform_type = #{bindPlatformType,jdbcType=INTEGER},
+      </if>
+      <if test="bindAccount != null">
+        bind_account = #{bindAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="bindName != null">
+        bind_name = #{bindName,jdbcType=VARCHAR},
+      </if>
+      <if test="bindPortrait != null">
+        bind_portrait = #{bindPortrait,jdbcType=VARCHAR},
+      </if>
+      <if test="bindCount != null">
+        bind_count = #{bindCount,jdbcType=VARCHAR},
+      </if>
+      <if test="bindFansCount != null">
+        bind_fans_count = #{bindFansCount,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expand1 != null">
+        expand_1 = #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        expand_2 = #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        expand_3 = #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="expand4 != null">
+        expand_4 = #{expand4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.money.more.data.entity.CustomerBandInfo">
+    update customer_band_info
+    set `disable` = #{disable,jdbcType=TINYINT},
+      bind_id = #{bindId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      bind_platform_type = #{bindPlatformType,jdbcType=INTEGER},
+      bind_account = #{bindAccount,jdbcType=VARCHAR},
+      bind_name = #{bindName,jdbcType=VARCHAR},
+      bind_portrait = #{bindPortrait,jdbcType=VARCHAR},
+      bind_count = #{bindCount,jdbcType=VARCHAR},
+      bind_fans_count = #{bindFansCount,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      expand_1 = #{expand1,jdbcType=VARCHAR},
+      expand_2 = #{expand2,jdbcType=VARCHAR},
+      expand_3 = #{expand3,jdbcType=VARCHAR},
+      expand_4 = #{expand4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.money.more.data.mapper.TaskDetailInfoMapper">
+  <resultMap id="BaseResultMap" type="com.money.more.data.entity.TaskDetailInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="disable" jdbcType="TINYINT" property="disable" />
+    <result column="task_detail_id" jdbcType="VARCHAR" property="taskDetailId" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="excut_status" jdbcType="VARCHAR" property="excutStatus" />
+    <result column="submit_time" jdbcType="TIMESTAMP" property="submitTime" />
+    <result column="aduit_by" jdbcType="VARCHAR" property="aduitBy" />
+    <result column="audit_time" jdbcType="TIMESTAMP" property="auditTime" />
+    <result column="audit_result" jdbcType="VARCHAR" property="auditResult" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="lastUpdateBy" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="expand_1" jdbcType="VARCHAR" property="expand1" />
+    <result column="expand_2" jdbcType="VARCHAR" property="expand2" />
+    <result column="expand_3" jdbcType="VARCHAR" property="expand3" />
+    <result column="expand_4" jdbcType="VARCHAR" property="expand4" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `disable`, task_detail_id, customer_id, task_id, image_url, excut_status, submit_time,
+    aduit_by, audit_time, audit_result, sort, create_by, create_time, last_update_by,
+    last_update_time, expand_1, expand_2, expand_3, expand_4
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task_detail_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from task_detail_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.money.more.data.entity.TaskDetailInfo">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into task_detail_info (id, `disable`, task_detail_id,
+    customer_id, task_id, image_url,
+    excut_status, submit_time, aduit_by,
+    audit_time, audit_result, sort,
+    create_by, create_time, last_update_by,
+    last_update_time, expand_1, expand_2,
+    expand_3, expand_4)
+    values (#{id,jdbcType=BIGINT}, #{disable,jdbcType=TINYINT}, #{taskDetailId,jdbcType=VARCHAR},
+    #{customerId,jdbcType=VARCHAR}, #{taskId,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR},
+    #{excutStatus,jdbcType=VARCHAR}, #{submitTime,jdbcType=TIMESTAMP}, #{aduitBy,jdbcType=VARCHAR},
+    #{auditTime,jdbcType=TIMESTAMP}, #{auditResult,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER},
+    #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateBy,jdbcType=VARCHAR},
+    #{lastUpdateTime,jdbcType=TIMESTAMP}, #{expand1,jdbcType=VARCHAR}, #{expand2,jdbcType=VARCHAR},
+    #{expand3,jdbcType=VARCHAR}, #{expand4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.money.more.data.entity.TaskDetailInfo">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into task_detail_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="disable != null">
+        `disable`,
+      </if>
+      <if test="taskDetailId != null">
+        task_detail_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="taskId != null">
+        task_id,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="excutStatus != null">
+        excut_status,
+      </if>
+      <if test="submitTime != null">
+        submit_time,
+      </if>
+      <if test="aduitBy != null">
+        aduit_by,
+      </if>
+      <if test="auditTime != null">
+        audit_time,
+      </if>
+      <if test="auditResult != null">
+        audit_result,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time,
+      </if>
+      <if test="expand1 != null">
+        expand_1,
+      </if>
+      <if test="expand2 != null">
+        expand_2,
+      </if>
+      <if test="expand3 != null">
+        expand_3,
+      </if>
+      <if test="expand4 != null">
+        expand_4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="disable != null">
+        #{disable,jdbcType=TINYINT},
+      </if>
+      <if test="taskDetailId != null">
+        #{taskDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="excutStatus != null">
+        #{excutStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="submitTime != null">
+        #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aduitBy != null">
+        #{aduitBy,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null">
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditResult != null">
+        #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expand1 != null">
+        #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="expand4 != null">
+        #{expand4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.money.more.data.entity.TaskDetailInfo">
+    update task_detail_info
+    <set>
+      <if test="disable != null">
+        `disable` = #{disable,jdbcType=TINYINT},
+      </if>
+      <if test="taskDetailId != null">
+        task_detail_id = #{taskDetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        task_id = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="excutStatus != null">
+        excut_status = #{excutStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="submitTime != null">
+        submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aduitBy != null">
+        aduit_by = #{aduitBy,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null">
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditResult != null">
+        audit_result = #{auditResult,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expand1 != null">
+        expand_1 = #{expand1,jdbcType=VARCHAR},
+      </if>
+      <if test="expand2 != null">
+        expand_2 = #{expand2,jdbcType=VARCHAR},
+      </if>
+      <if test="expand3 != null">
+        expand_3 = #{expand3,jdbcType=VARCHAR},
+      </if>
+      <if test="expand4 != null">
+        expand_4 = #{expand4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.money.more.data.entity.TaskDetailInfo">
+    update task_detail_info
+    set `disable` = #{disable,jdbcType=TINYINT},
+      task_detail_id = #{taskDetailId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      task_id = #{taskId,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      excut_status = #{excutStatus,jdbcType=VARCHAR},
+      submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      aduit_by = #{aduitBy,jdbcType=VARCHAR},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      audit_result = #{auditResult,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      expand_1 = #{expand1,jdbcType=VARCHAR},
+      expand_2 = #{expand2,jdbcType=VARCHAR},
+      expand_3 = #{expand3,jdbcType=VARCHAR},
+      expand_4 = #{expand4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
